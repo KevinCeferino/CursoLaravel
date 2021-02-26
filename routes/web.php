@@ -10,9 +10,3 @@ Route::resource('portafolio', 'ProjectController')->names('projects')->parameter
 
 Route::POST('contact', 'MessageController@store')->name('contact.store');
 Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

@@ -5,7 +5,9 @@
 @section('content')
     <h1>@lang('Portfolio')</h1>
     @include('partials.session-status')
+    @auth
     <a href="{{ route('projects.create') }}">Crear proyecto</a>
+    @endauth
 <ul>
         @forelse ($projects as $projectsElem)
              <li><a href="{{ route('projects.show', $projectsElem) }}"> {{ $projectsElem->title }}</a> </li>
