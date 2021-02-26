@@ -21,7 +21,7 @@ class  ProjectController extends Controller
     public function index()
     {
         return view('projects.index', [
-            'projects' => Project::orderBy('created_at', 'DESC')->paginate()
+            'projects' => Project::orderBy('created_at', 'DESC')->paginate(10)
         ]);
     }
 
@@ -33,7 +33,10 @@ class  ProjectController extends Controller
         ]);
     }
     public function create(){
-        return view('projects.create');
+        return view('projects.create',
+            [
+                'project' => new Project
+            ]);
     }
     public function store(SaveProjectRequest $request){
 
@@ -52,14 +55,14 @@ class  ProjectController extends Controller
             'title' => 'required',
             'url' => 'required',
             'description' => 'required'
-        ])->with('status', 'El proyecto fue actualizado con exito');
+        ]);
 
         $project->update([
             'title' => request('title'),
             'url' => request('url'),
             'description' => request('description')
         ]);
-        return redirect()->route('projects.show', $project);
+        return redirect()->route('projects.show', $project)->with('status', 'El proyecto fue actualizado con exito');
     }
     public function destroy(Project $project){
 

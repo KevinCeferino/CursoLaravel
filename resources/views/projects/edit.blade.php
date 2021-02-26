@@ -3,22 +3,19 @@
 @section('title', 'Editar Proyecto')
 
 @section('content')
-    <h1>Editar proyecto</h1>
-     @include('partials.validation-errors')
-     @include('partials.session-status')
-    <form method="POST" action="{{ route('projects.update', $project) }}">
-    	@csrf @method('PATCH')
-    	<label>
-    		Titulo <br>
-    		<input type="text" name="title" value="{{ old('title' ,$project->title) }}">
-    	</label><br>
-    	<label>Descripción <br>
-    		<textarea name="description">{{ old('description' , $project->description) }}</textarea>
-    	</label><br>
-    	<label>
-    		Url <br>
-    		<input type="text" name="url" value="{{ old('url' , $project->url) }}"><br>
-    	</label>
-    	<button>Actualizar</button>
-    </form>
+<div class="container">
+    <div class="row">
+        <div class="col-12 col-sm-10 col-lg-6 mx-auto">
+                 @include('partials.validation-errors')
+                 @include('partials.session-status')
+                <form class="bg-white shadow rounded py-3 px-4" method="POST" action="{{ route('projects.update', $project) }}">
+                    <h1>Editar proyecto</h1>
+                	@csrf @method('PATCH')
+                	@include('projects._form')
+                	<button class="btn btn-primary btn-block">Actualizar</button>
+                    <a class="btn btn-link btn-block" href="{{ route('projects.index') }}">Cancelar</a>
+                </form>
+            </div>
+        </div>
+    </div>
 @endsection
